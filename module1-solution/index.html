@@ -1,0 +1,34 @@
+<html ng-app="LunchCheck">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<style>
+		body{
+			margin-top:10px;
+		}
+		.borderGreen { border-color: green; }
+		.borderRed { border-color: red; }
+		.fontGreen { color: green; }
+		.fontRed { color: red; }
+		</style>
+	</head>
+	<body ng-controller="LunchCheckController">
+		<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<label>Regular Food For Lunch:</label>
+						<input ng-class = "{borderGreen: style == true, borderRed: style==false}" type="text" ng-model="food">
+						<span>{{commaMsg}}</span>
+					</div>
+					<div class="col-md-3">
+						<button type="button" class="btn btn-primary" ng-click="checkItems()">Check If Too Much?</button>
+					</div>
+				</div>
+				<div class="row">
+					<span ng-class = "{fontGreen: style == true, fontRed: style==false}" class="col-md-4">{{msg}}</span>
+				</div>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>
