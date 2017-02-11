@@ -34,7 +34,7 @@
 
 		promise.then(function (response) {
 			if(response != null && response.length > 0){
-				menu.found = MenuSearchService.getItems();
+				menu.found = response;
 				menu.message = "Success";
 			}
 			else if(response.length == 0)
@@ -75,10 +75,6 @@
 				});
 				return foundItems;
 			});
-		};
-	  
-		service.getItems = function (){
-		  return foundItems;
 		};
 	  
 		service.removeItem = function (itemIndex) {
