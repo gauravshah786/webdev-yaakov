@@ -24,8 +24,8 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     controller: 'CategoryListController as categoryList',
     resolve: {
       categories: ['MenuDataService', function (MenuDataService) {
-        var promise = MenuDataService.getAllCategories();
-        promise.then(function(response){
+        return MenuDataService.getAllCategories()
+        .then(function(response){
             return response.data;
         })
         .catch(function(error){
