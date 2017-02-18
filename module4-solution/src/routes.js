@@ -25,9 +25,6 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     resolve: {
       categories: ['MenuDataService', function (MenuDataService) {
         return MenuDataService.getAllCategories()
-        .then(function(response){
-            return response.data;
-        })
         .catch(function(error){
           console.log(error);
         });
@@ -44,10 +41,7 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
             function ($stateParams, MenuDataService) {
               return MenuDataService.getAllCategories()
                 .then(function(obj) {
-                  return MenuDataService.getItemsforCategory(obj.data[$stateParams.categoryId].short_name)
-                  .then(function (jsonData){
-                    return jsonData.data.menu_items;
-                  });
+                  return MenuDataService.getItemsforCategory($stateParams.categoryId)
                 })
                 .catch(function(error){
                   console.log(error);

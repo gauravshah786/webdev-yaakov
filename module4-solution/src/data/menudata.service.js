@@ -13,14 +13,21 @@ function MenuDataService($http,ApiBasePath) {
       return $http({
           method: "GET",
           url: (ApiBasePath + "/categories.json")
-        });
+        })
+        .then(function (result){
+          return result.data;
+        })
+      ;
     };
 
     service.getItemsforCategory = function(categoryShortName){
-      var url = ApiBasePath + "/menu_items.json?category=" + categoryShortName;
       return $http({
           method: "GET",
-          url: url
+          url: (ApiBasePath + "/menu_items.json"),
+          params: {category: categoryShortName}
+      })
+      .then(function (result) {
+          return result.data.menu_items;
       });
     };
   }
