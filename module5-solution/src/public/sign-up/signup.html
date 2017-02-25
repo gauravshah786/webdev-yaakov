@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+      <h2>Sign Up</h2>
+        <fieldset>
+          <form name='signUpCtrl.signupForm' novalidate>
+            
+            <p>
+              <label for="firstname">First name<span class="asterik">*</span>:</label>
+              <input type="text" name="firstname" placeholder="Firstname" ng-model="signUpCtrl.user.firstname"
+                     required class="form-control">
+                    {{ user.firstname }}
+              <span ng-if="signUpCtrl.signupForm.firstname.$error.required && signUpCtrl.signupForm.firstname.$touched">
+                Firstname must be provided
+              </span>
+            </p>
+            
+            <p>
+              <label for="lastname">Last name<span class="asterik">*</span>:</label>
+              <input type="text" name="lastname" placeholder="Lastname" ng-model="signUpCtrl.user.lastname"
+                    required class="form-control">
+                    {{ user.lastname }}
+              <span ng-if="signUpCtrl.signupForm.lastname.$error.required && signUpCtrl.signupForm.lastname.$touched">
+                Lastname must be provided
+              </span>
+            </p>
+              
+            <p>
+              <label for="email">E-mail address<span class="asterik">*</span>:</label>  
+              <input type="email" name="email" placeholder="Email" ng-model="signUpCtrl.user.email"
+                   required class="form-control">
+              <span ng-if="signUpCtrl.signupForm.email.$invalid && signUpCtrl.signupForm.email.$touched">
+                Must be a valid email address: handle@domain format
+              </span>
+            </p>
+            
+            <p>
+              <label for="phone">Phone:</label>
+              <input type="text" name="phone" placeholder="Phone format ###-###-####" ng-model="signUpCtrl.user.phone"
+                     pattern="(\d{3})-(\d{3})-(\d{4})" class="form-control">
+              <span ng-if="signUpCtrl.signupForm.phone.$invalid && signUpCtrl.signupForm.phone.$touched">
+                Phone must be in the format ###-###-####.
+              </span>
+            </p>
+    		  
+            <p>
+              <label for="menuNumber">Favorite dish:</label>
+    		      <input type="text" name="menuNumber" placeholder="Enter Fav Dish from Menu eg. A1, A2"
+                    ng-model="signUpCtrl.user.menuNumber" validnumber ng-model-options="{'updateOn': 'blur'}"
+                  class="form-control">
+              <span ng-if="signUpCtrl.signupForm.menuNumber.$error.validnumber">
+                No such menu number exists
+              </span>
+            </p>
+
+            <button class="btn btn-primary mt20"
+              ng-disabled="signUpCtrl.signupForm.$invalid"
+              ng-click="signUpCtrl.submit()">Sign up</button>
+
+            <div style="margin-top: 10px;">
+              <span ng-show = "(!signUpCtrl.signupForm.firstname.$touched) && (!signUpCtrl.signupForm.lastname.$touched) 
+                              && (!signUpCtrl.signupForm.email.$touched) && (!signUpCtrl.signupForm.phone.$touched)
+                              && (!signUpCtrl.signupForm.menuNumber.$touched) && signUpCtrl.successful">
+                      Your information has been saved. Please check <a ui-sref="public.myinfo">here.</a>
+              </span>
+            </div>
+
+          </form>
+        </fieldset>
+        </div>
+
+        <div class="col-md-6 alert alert-warning">
+              <p>Signing up only saves information to "page's" memory, i.e. if you reload
+              page in browser the data will be forgotten.
+              </p>
+        </div> 
+    </div>
+</div>

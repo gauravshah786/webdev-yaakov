@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>Profile</h2>
+  <div ng-if="myInfoCtrl.signedUp">
+    <div class="row">
+      <div class="col-md-6">
+        <p>First name: {{ myInfoCtrl.user.firstName }}</p>
+        <p>Last name: {{ myInfoCtrl.user.lastName }}</p>
+        <p>E-mail address: {{ myInfoCtrl.user.email }}</p>
+        <p>Phone number: {{ myInfoCtrl.user.phone }}</p>
+        
+        <h3>Favorite dish</h3>
+          <div ng-if="myInfoCtrl.user.favoriteMenuItem">
+            
+            <img ng-src="images/menu/{{ myInfoCtrl.user.favoriteMenuItem.category_short_name }}/{{ myInfoCtrl.user.favoriteMenuItem.category_short_name }}.jpg" class="pull-left">
+            <h4 class="ml250">{{ myInfoCtrl.user.favoriteMenuItem.name }} [{{ myInfoCtrl.user.favoriteDish }}]</h4>
+            <p class="ml250">
+                
+                  {{ myInfoCtrl.user.favoriteMenuItem.description }}
+            </p>
+          </div>
+          <div ng-show="!myInfoCtrl.user.favoriteMenuItem">
+            <p>You did not enter short name for your favorite dish when signing up.</p>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div ng-if="!myInfoCtrl.signedUp">
+    <p>Not Signed Up Yet.</p>
+    <p><a ui-sref="public.signup" class="btn btn-warning">Sign up Now!</a></p>
+  </div>
+
+  <div class="alert alert-warning" style="margin-top:10px">
+    <p>Signing up only saves information to "page's" memory, i.e. if you reload
+      page in browser the data will be forgotten.</p>
+  </div>
+</div>
